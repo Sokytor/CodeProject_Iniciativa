@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0",
+  "owner": "Sokytor",
+  "public_skills": {
+    "repository": "https://github.com/openai/skills",
+    "commit": "49f948faa9258a0c61caceaf225e179651397431",
+    "names": [
+      "imagegen",
+      "openai-docs",
+      "skill-creator",
+      "skill-installer",
+      "pdf",
+      "cloudflare-deploy"
+    ]
+  },
+  "adapted_skills": [
+    "documents",
+    "presentations",
+    "spreadsheets",
+    "visualize",
+    "template-creator",
+    "write-page",
+    "maintain-space",
+    "organize-space",
+    "manage-schedules",
+    "excel-live-control",
+    "pets",
+    "create-pet",
+    "update-pet",
+    "plugin-management"
+  ],
+  "codegraph": {
+    "package": "@colbymchenry/codegraph",
+    "version": "1.6.0",
+    "source": "https://github.com/colbymchenry/codegraph"
+  },
+  "generated_date": "2026-09-30"
+}

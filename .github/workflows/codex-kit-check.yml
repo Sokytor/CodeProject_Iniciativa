@@ -1,0 +1,37 @@
+name: Codex Cloud kit
+
+on:
+  push:
+    paths:
+      - 'AGENTS.md'
+      - 'codegraph.json'
+      - '.agents/**'
+      - 'tools/*codex-kit.py'
+      - '.github/workflows/codex-kit-check.yml'
+  pull_request:
+    paths:
+      - 'AGENTS.md'
+      - 'codegraph.json'
+      - '.agents/**'
+      - 'tools/*codex-kit.py'
+      - '.github/workflows/codex-kit-check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22.16.0'
+      - name: Validate rules, skills and resources
+        run: python3 tools/verify-codex-kit.py
+      - name: Install CodeGraph and index the project
+        run: bash .agents/cloud/bootstrap.sh
+      - name: Confirm the initialized index
+        run: .agents/bin/codegraph status --json

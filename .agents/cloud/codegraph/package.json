@@ -1,0 +1,8 @@
+{
+  "name": "sokytor-codegraph-runtime",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "@colbymchenry/codegraph": "1.6.0"
+  }
+}
