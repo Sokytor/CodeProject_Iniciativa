@@ -54,6 +54,12 @@ def verify(root):
     for path in ['.agents/cloud/bootstrap.sh', '.agents/bin/codegraph']:
         require(subprocess.run(['bash', '-n', str(root / path)], capture_output=True).returncode == 0, 'Invalid shell script: ' + path)
         require((root / path).stat().st_mode & 0o111, 'Script is not executable: ' + path)
+    if (root / '.git').exists():
+        receipt = json.loads((root / '.agents/sokytor-kit.json').read_text())
+        tracked = set(subprocess.check_output(['git', '-C', str(root), 'ls-files'], text=True).splitlines())
+        if '.agents/sokytor-kit.json' in tracked:
+            missing = set(receipt['files']) - tracked
+            require(not missing, 'Kit files are not tracked by Git: ' + ', '.join(sorted(missing)))
     if errors:
         raise ValueError('\n'.join(errors))
     return {'skills': len(skills), 'codegraph_version': pin, 'rules': 'ok', 'resources': 'ok'}

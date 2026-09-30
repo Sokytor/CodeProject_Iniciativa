@@ -378,7 +378,7 @@
     ".agents/skills/visualize/SKILL.md": "88c2bd91d7841c22deff2b4123fe5044ca1afe7490edc7ae60b7dd75731643b4",
     ".agents/skills/write-page/SKILL.md": "25710571eb7626ed0b92539f632470ea49751a80ac7b303804118f7da6bfaa5d",
     ".github/workflows/codex-kit-check.yml": "116764e8198afd80ab460bc714c0a7ee0a73be2ee9e7854c4ad92f2151b06dd2",
-    "tools/apply-codex-kit.py": "0a1b5db5dadad17c9e676bec5cbf63061eb3722049c083de6886b351f31704fa",
-    "tools/verify-codex-kit.py": "dec0cf363141de2ab68d5b41431a3810902ea96cddfd741f987b049403a28bd0"
+    "tools/apply-codex-kit.py": "7dcd03367a5f5d51d0bef6bb016b7ec4d3407ac2276c5b0cd04fbcc819603d1a",
+    "tools/verify-codex-kit.py": "f6d8a06a701a2fb64b12123c12762208bd660357802f13d8c0d5b043d8b6397b"
   }
 }

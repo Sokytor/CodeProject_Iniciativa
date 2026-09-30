@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+repo_root="$(cd "$script_dir/../.." && pwd)"
+runtime_dir="${CODEX_CODEGRAPH_RUNTIME:-$repo_root/.agents/.runtime/codegraph}"
+export DO_NOT_TRACK=1 CODEGRAPH_TELEMETRY=0 CODEGRAPH_NO_UPDATE_CHECK=1 CODEGRAPH_NO_DOWNLOAD=1
+cli="$runtime_dir/node_modules/.bin/codegraph"
+if [[ ! -x "$cli" ]]; then
+  echo 'Primero ejecuta: bash .agents/cloud/bootstrap.sh' >&2
+  exit 1
+fi
+cd "$repo_root"
+exec "$cli" "$@"

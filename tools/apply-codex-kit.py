@@ -11,7 +11,7 @@ import sys
 KIT_ROOT = Path(__file__).resolve().parent.parent
 START = '<!-- SOKYTOR_CLOUD_START -->'
 END = '<!-- SOKYTOR_CLOUD_END -->'
-IGNORE_BLOCK = '\n# Sokytor Codex Cloud: generated tools and index\n.codegraph/\n.agents/.runtime/\n.agents/**/__pycache__/\n'
+IGNORE_BLOCK = '\n# Sokytor Codex Cloud: generated tools and index\n!.agents/\n!.agents/**\n.codegraph/\n.agents/.runtime/\n.agents/**/__pycache__/\n'
 
 
 def digest(data):
@@ -69,6 +69,9 @@ def apply(target, check=False):
     old_ignore = ignore.read_text() if ignore.exists() else ''
     if '# Sokytor Codex Cloud: generated tools and index' not in old_ignore:
         planned.append((ignore, (old_ignore.rstrip() + '\n' + IGNORE_BLOCK).encode(), 0o644))
+    elif '!.agents/**' not in old_ignore:
+        desired_ignore = old_ignore.replace('# Sokytor Codex Cloud: generated tools and index\n', '# Sokytor Codex Cloud: generated tools and index\n!.agents/\n!.agents/**\n', 1)
+        planned.append((ignore, desired_ignore.encode(), 0o644))
 
     config_path = target / 'codegraph.json'
     config = json.loads(config_path.read_text()) if config_path.exists() else {}
